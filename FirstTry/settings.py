@@ -23,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-l1z66cb%&5bps-x*=vvrq2=(cqu7lbv(u&4tx6t%(6g3-(9*ka'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-# ALLOWED_HOSTS = ['https://medlgallery.herokuapp.com/', '127.0.0.1']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://medlgallery.herokuapp.com/', '127.0.0.1']
+# ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'FirstApp',
     'Function',
-    'django_filter'
+    'django_filters'
 ]
 
 MIDDLEWARE = [
