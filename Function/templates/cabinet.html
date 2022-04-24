@@ -1,0 +1,19 @@
+{% extends 'firstTemplate.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Добавить новое фото:</h1>
+<form action="" method="POST" style="margin-bottom:50px;">
+    {% csrf_token %}
+    {{ form }}
+    <button class="submit-button" type="submit" name="submit">отправить</button>
+</form>
+
+<h1>Добавить новый тэг:</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ tagform }}
+    <button class="submit-button" type="submit" name="submit">отправить</button>
+</form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/backgroundstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+    <link rel="stylesheet" href="{% static 'css/image.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cabinet.css' %}">
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+</head>
+
+{% csrf_token %}
+<button onclick="location.href = {% url 'gallery' %}" class="btn"></button>
+
+<nav>
+    <div class="nav-bg"></div>
+    <ul>
+        <li><a href="{% url 'logout' %}">Выход</a></li>
+        <li><a href="{% url 'gallery' %}">Фотографии</a></li>
+        <li><a href="">Пасты</a></li>
+        <li><a href="">Другое</a></li>
+        <li><a href="{% url 'search' %}">Поиск</a></li>
+        <li><a href="{% url 'cabinet' %}">Личный Кибинет</a></li>
+    </ul>
+</nav>
+
+<title>MedlemSite</title>
+
+<p class="logo" style="text-align:center;"><img src="\static\MedlGal1.png" alt="Logo"></p>
+
+{% block content %}{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'firstTemplate.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="solo-photo">
+        <img src="{{image.url}}" alt="" height="800px" width="auto">
+    </div>
+    <div class="solo-photo-name">
+        <p style="padding-left:5px; color:white;font-size:30px;font-family:Ubuntu; text-align:left;"><span
+                style="font-weight: bold;">Название: </span> {{image.name}}</p>
+    </div>
+    <div class="img-tags">
+        <p class="tag" style="font-weight: bold; padding-left:5px; font-family:Ubuntu; font-size:30px;">Тэги:</p>
+        {% for tag in image.tags.all %}
+        <p class="tag" style="color:white;font-size:25px;font-family:Ubuntu; text-align:left;"><a href="{% url 'gallery' %}">{{tag}}</a></p>
+        {% endfor %}
+    </div>
+    <div class="date">
+        <p class="tag" style="font-weight: bold; padding-left:5px; font-family:Ubuntu; font-size:30px;">{{image.date_created}}</p>
+    </div>
+    <div class="author">
+        <p class="author_name" style="font-weight: bold; padding-left:5px; font-family:Ubuntu; font-size:30px;">Автор: {{image.author}}</p>
+    </div>
+{% endblock %}

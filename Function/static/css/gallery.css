@@ -1,0 +1,36 @@
+.image {
+  float: left;
+  padding: 10px;
+  width: 450px;
+  height: 350px;
+  padding-bottom: 100px;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-color: #6A5ACD;
+}
+
+.photoes::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+a.image {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+}
+
+.image p{
+  transition: .25s ease-in-out;
+}
+
+.image p:hover {
+  color: 43EE3E !important;
+}

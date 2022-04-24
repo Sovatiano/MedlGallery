@@ -1,0 +1,29 @@
+{% load static %}
+
+<head>
+<link rel="stylesheet" href="{% static 'css/loginstyle.css' %}">
+</head>
+
+<div class="user">
+    <header class="user__header">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3219/logo.svg" alt="" />
+        <h1 class="user__title">Добро пожаловать!</h1>
+    </header>
+
+    <form class="form" method="post">
+        <div class="form__group">
+            <input type="text" name="login" placeholder="Логин" class="form__input" />
+        </div>
+
+        <div class="form__group">
+            <input type="password" name="password" placeholder="Пароль" class="form__input" />
+        </div>
+
+        {% csrf_token %}
+        <button class="btn" type="submit" >Вход</button>
+
+        <label class="checkbox">
+            <input type="checkbox" name="remember" value="remember-me" id="remember_me"> Запомнить Меня
+        </label>
+    </form>
+</div>

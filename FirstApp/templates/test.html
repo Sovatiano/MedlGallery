@@ -1,0 +1,29 @@
+{% load static %}
+
+<head>
+<link rel="stylesheet" href="{% static 'css/loginstyle.css' %}">
+</head>
+
+<div class="user">
+    <header class="user__header">
+        <img src="https://sun9-6.userapi.com/impf/uTPdYYolHrBJqw3TPPS6DpBq9_F3VMJqjC0jWQ/JbjzA00aK3s.jpg?size=319x272&quality=96&sign=f54e70363376ce75236d3df41eface10&type=album" alt="" />
+        <h1 class="user__title">Добро пожаловать!</h1>
+    </header>
+
+    <form class="form">
+        <div class="form__group">
+            <input type="text" placeholder="Логин" class="form__input" />
+        </div>
+
+        <div class="form__group">
+            <input type="password" placeholder="Пароль" class="form__input" />
+        </div>
+
+        <button class="btn" type="button">Вход</button>
+
+        <label class="checkbox">
+            <input type="checkbox" value="remember-me" id="remember_me"> Запомнить Меня
+        </label>
+
+    </form>
+</div>
