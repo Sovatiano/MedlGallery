@@ -1,1 +1,1 @@
-web: gunicorn medlgallery.wsgi --log-file -
+web: gunicorn MedlSite.wsgi --log-file -
