@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'FirstApp',
     'Function',
-    'django_filters'
+    'django_filter'
 ]
 
 MIDDLEWARE = [
