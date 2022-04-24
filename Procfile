@@ -1,1 +1,1 @@
-web: gunicorn MedlSite.wsgi --log-file -
+web: gunicorn FirstTry.wsgi --log-file -
