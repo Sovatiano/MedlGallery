@@ -31,6 +31,7 @@ def cabinet(request):
         print(picture)
         tag = request.POST.get('tag')
         print(tag)
+        print(MedlTag.objects.all())
         if 'picture' in request.POST:
             form = PictureForm(request.POST)
             if form.is_valid():
@@ -40,14 +41,14 @@ def cabinet(request):
         if 'tag' in request.POST:
             tagform = TagForm(request.POST)
             if tagform.is_valid():
-                taginf = tagform.save(commit=False)
+                taginf = tagform.save()
                 if MedlTag.objects.filter(tagname=taginf.tagname).count() == 0:
                     taginf.author = str(request.user)
                     taginf.save()
         else:
-            print('AHAHAHAHHA')
+            print(MedlTag.objects.all())
     else:
-        print('lol')
+        print(MedlTag.objects.all())
     context = {'form': form, 'tagform': tagform}
     return render(request, 'cabinet.html', context)
 

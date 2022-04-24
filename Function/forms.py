@@ -13,8 +13,7 @@ class PictureForm(ModelForm):
                                   widget=forms.TextInput(
                                       attrs={"class": "input-field", "placeholder": "Описание фото"}))
 
-    tags = forms.MultipleChoiceField(label='', widget=forms.SelectMultiple(attrs={"class": "choice-field"}), choices=[
-    (item.pk, item) for item in MedlTag.objects.all()])
+    tags = forms.ModelChoiceField(label='', widget=forms.SelectMultiple(attrs={"class": "choice-field"}), queryset= MedlTag.objects.all())
 
     class Meta:
         model = MedlPicture
@@ -26,6 +25,7 @@ class PictureForm(ModelForm):
     def __int__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['name'].label = ''
+
 
 
 class SearchForm(ModelForm):
