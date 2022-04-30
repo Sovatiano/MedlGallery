@@ -17,6 +17,8 @@ def gallery(request):
 def image(request, pi):
     chnagetag = ChangeTags
     picture = MedlPicture.objects.get(id=pi)
+    for tag in sorted(MedlTag.objects.all().values(), key=lambda x: x['tagname']):
+        print(MedlTag.objects.filter(tagname=tag['tagname']))
     if request.method == "POST":
         form = ChangeTags(request.POST)
         if form.is_valid():
