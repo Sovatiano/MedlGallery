@@ -86,6 +86,6 @@ def search(request, tag=''):
     else:
         if tag != '':
             tag = MedlTag.objects.filter(tagname=tag)
-            result = set(MedlPicture.objects.filter(tags__in=tag).annotate(num_tags=Count('tags')).filter(num_tags=len(tag)).order_by('-date_created'))
+            result = MedlPicture.objects.filter(tags__in=tag).annotate(num_tags=Count('tags')).filter(num_tags=len(tag)).order_by('-date_created')
     context = {'form': form, 'result': result, 'result_len': len(result)}
     return render(request, 'search.html', context)
