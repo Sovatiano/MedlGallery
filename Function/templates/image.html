@@ -7,18 +7,22 @@
     </div>
     <div class="solo-photo-name">
         <p style="padding-left:5px; color:white;font-size:30px;font-family:Ubuntu; text-align:left;"><span
-                style="font-weight: bold;">Название: </span> {{image.name}}</p>
+                style="font-weight: bold; padding-left:5px;">Название: </span> {{image.name}}</p>
     </div>
     <div class="img-tags">
-        <p class="tag" style="font-weight: bold; padding-left:5px; font-family:Ubuntu; font-size:30px;">Теги:</p>
+        <p class="tag" style="font-weight: bold; padding-left:10px; font-family:Ubuntu; font-size:30px;">Теги:</p>
         {% for tag in image.tags.all %}
-        <p class="tag" style="color:white;font-size:25px;font-family:Ubuntu; text-align:left;"><a href="{% url 'search' %}">{{tag}}</a></p>
+        <p class="tag" style="color:white;font-size:25px;font-family:Ubuntu; text-align:left; padding-left:10px;"><a href="{% url 'search' %}">{{tag}}</a></p>
         {% endfor %}
     </div>
     <div class="date">
-        <p class="tag" style="font-weight: bold; padding-left:5px; font-family:Ubuntu; font-size:30px;">{{image.date_created}}</p>
+        <p class="tag" style="font-weight: bold; padding-left:10px; font-family:Ubuntu; font-size:30px;">{{image.date_created}}</p>
     </div>
     <div class="author">
-        <p class="author_name" style="font-weight: bold; padding-left:5px; font-family:Ubuntu; font-size:30px;">Автор: {{image.author}}</p>
+        <p class="author_name" style="font-weight: bold; padding-left:10px; font-family:Ubuntu; font-size:30px;">Автор: {{image.author}}</p>
+    </div>
+    <div class="description">
+                <p style="padding-left: 5px; color:white;font-size:30px;font-family:Ubuntu; text-align:left;"><span
+                style="font-weight: bold; padding-left:5px; padding-bottom: 10px">Описание: </span> {{image.description}}</p>
     </div>
 {% endblock %}
