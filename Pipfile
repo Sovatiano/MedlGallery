@@ -9,6 +9,7 @@ django-filter = "*"
 gunicorn = "*"
 dj-database-url = "*"
 psycopg2-binary = "*"
+whitenoise = "*"
 
 [dev-packages]
 
