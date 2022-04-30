@@ -12,7 +12,7 @@
     <div class="img-tags">
         <p class="tag" style="font-weight: bold; padding-left:5px; font-family:Ubuntu; font-size:30px;">Тэги:</p>
         {% for tag in image.tags.all %}
-        <p class="tag" style="color:white;font-size:25px;font-family:Ubuntu; text-align:left;"><a href="{% url 'gallery' %}">{{tag}}</a></p>
+        <p class="tag" style="color:white;font-size:25px;font-family:Ubuntu; text-align:left;"><a href="{% url 'search' %}">{{tag}}</a></p>
         {% endfor %}
     </div>
     <div class="date">

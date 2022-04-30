@@ -13,7 +13,8 @@ class PictureForm(ModelForm):
                                   widget=forms.TextInput(
                                       attrs={"class": "input-field", "placeholder": "Описание фото"}))
 
-    tags = forms.ModelChoiceField(label='', widget=forms.SelectMultiple(attrs={"class": "choice-field"}), queryset= MedlTag.objects.all())
+    tags = forms.ModelMultipleChoiceField(label='', widget=forms.SelectMultiple(attrs={"class": "choice-field"}),
+                                          queryset=MedlTag.objects.all())
 
     class Meta:
         model = MedlPicture
@@ -32,9 +33,8 @@ class SearchForm(ModelForm):
     name = forms.CharField(label='', required=False,
                            widget=forms.TextInput(attrs={"class": "input-field", "placeholder": "Название фото"}))
 
-    tags = forms.MultipleChoiceField(label='', widget=forms.SelectMultiple(attrs={"class": "choice-field"}), choices=[
-    (item.pk, item) for item in MedlTag.objects.all()], required=False)
-
+    tags = forms.ModelMultipleChoiceField(label='', widget=forms.SelectMultiple(attrs={"class": "choice-field"}),
+                                          queryset=MedlTag.objects.all())
     author = forms.CharField(label='', required=False,
                            widget=forms.TextInput(attrs={"class": "input-field", "placeholder": "Автор"}))
     class Meta:
