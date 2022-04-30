@@ -34,7 +34,7 @@ class SearchForm(ModelForm):
                            widget=forms.TextInput(attrs={"class": "input-field", "placeholder": "Название фото"}))
 
     tags = forms.ModelMultipleChoiceField(label='', widget=forms.SelectMultiple(attrs={"class": "choice-field"}),
-                                          queryset=MedlTag.objects.all())
+                                          queryset=MedlTag.objects.all(), required=False)
     author = forms.CharField(label='', required=False,
                            widget=forms.TextInput(attrs={"class": "input-field", "placeholder": "Автор"}))
     class Meta:
