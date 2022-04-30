@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="solo-photo">
-        <img src="{{image.url}}" alt="" height="800px" width="auto">
+        <img src="{{image.url}}" alt="" height="800px" width="auto" border="4px; solid; #8B4513">
     </div>
     <div class="solo-photo-name">
         <p style="padding-left:5px; color:white;font-size:30px;font-family:Ubuntu; text-align:left;"><span
@@ -26,10 +26,10 @@
                 style="font-weight: bold; padding-left:5px; padding-bottom: 10px">Описание: </span> {{image.description}}</p>
     </div>
 
-    <h1>Изменить теги:</h1>
-    <form action="" method="POST" style="margin-bottom:50px;">
+    <h1 style= "padding-left:10px">Изменить теги:</h1>
+    <form action="" method="POST" style="color:white;font-size:25px;font-family:Ubuntu; text-align:left; padding-left:10px;">
         {% csrf_token %}
         {{ changetag }}
-        <button class="submit-button" type="submit" name="submit">Изменить</button>
+        <button class="submit-button" type="submit" name="submit" style="margin-bottom: 10px">Изменить</button>
     </form>
 {% endblock %}
