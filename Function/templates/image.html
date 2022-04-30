@@ -10,7 +10,7 @@
                 style="font-weight: bold;">Название: </span> {{image.name}}</p>
     </div>
     <div class="img-tags">
-        <p class="tag" style="font-weight: bold; padding-left:5px; font-family:Ubuntu; font-size:30px;">Тэги:</p>
+        <p class="tag" style="font-weight: bold; padding-left:5px; font-family:Ubuntu; font-size:30px;">Теги:</p>
         {% for tag in image.tags.all %}
         <p class="tag" style="color:white;font-size:25px;font-family:Ubuntu; text-align:left;"><a href="{% url 'search' %}">{{tag}}</a></p>
         {% endfor %}
