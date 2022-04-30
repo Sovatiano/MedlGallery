@@ -9,7 +9,7 @@ from django.db.models import Count
 
 @login_required(login_url='login')
 def gallery(request):
-    pictures = MedlPicture.objects.all()
+    pictures = MedlPicture.objects.all().order_by('-date_created')
     return render(request, 'Gallery.html', {'pictures': pictures})
 
 
@@ -63,7 +63,7 @@ def cabinet(request):
 @login_required(login_url='login')
 def search(request, tag=''):
     form = SearchForm
-    result = set(MedlPicture.objects.all())
+    result = MedlPicture.objects.all().order_by('-date_created')
     if request.method == "POST":
         form = SearchForm(request.POST)
         if form.is_valid():
@@ -72,21 +72,20 @@ def search(request, tag=''):
             tags = form.cleaned_data.get("tags")
             print(tags)
             if name and tags and author:
-                result = set(MedlPicture.objects.filter(tags__in=tags, name=name, author=author).annotate(num_tags=Count('tags')).filter(num_tags=len(tags)))
+                result = MedlPicture.objects.filter(tags__in=tags, name=name, author=author).annotate(num_tags=Count('tags')).filter(num_tags=len(tags)).order_by('-date_created')
             elif name and tags and not author:
-                result = set(MedlPicture.objects.filter(tags__in=tags, name=name).annotate(num_tags=Count('tags')).filter(num_tags=len(tags)))
+                result = set(MedlPicture.objects.filter(tags__in=tags, name=name).annotate(num_tags=Count('tags')).filter(num_tags=len(tags)).order_by('-date_created'))
             elif name and not tags and not author:
                 result = set(MedlPicture.objects.filter(name=name))
             elif not name and tags and author:
-                result = set(MedlPicture.objects.filter(tags__in=tags, author=author).annotate(num_tags=Count('tags')).filter(num_tags=len(tags)))
+                result = set(MedlPicture.objects.filter(tags__in=tags, author=author).annotate(num_tags=Count('tags')).filter(num_tags=len(tags)).order_by('-date_created'))
             elif not name and tags and not author:
-                result = set(MedlPicture.objects.filter(tags__in=tags).annotate(num_tags=Count('tags')).filter(num_tags=len(tags)))
+                result = MedlPicture.objects.filter(tags__in=tags).annotate(num_tags=Count('tags')).filter(num_tags=len(tags)).order_by('-date_created')
             elif not name and not tags and author:
-                result = set(MedlPicture.objects.filter(author=author))
+                result = set(MedlPicture.objects.filter(author=author).order_by('-date_created'))
     else:
         if tag != '':
             tag = MedlTag.objects.filter(tagname=tag)
-            result = set(MedlPicture.objects.filter(tags__in=tag).annotate(num_tags=Count('tags')).filter(num_tags=len(tag)))
-    print(len(result))
+            result = set(MedlPicture.objects.filter(tags__in=tag).annotate(num_tags=Count('tags')).filter(num_tags=len(tag)).order_by('-date_created'))
     context = {'form': form, 'result': result, 'result_len': len(result)}
     return render(request, 'search.html', context)
