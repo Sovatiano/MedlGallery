@@ -55,3 +55,12 @@ class TagForm(ModelForm):
         widgets = {'author': forms.HiddenInput}
 
     tag = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
+
+class ChangeTags(ModelForm):
+    tags = forms.ModelMultipleChoiceField(label='', widget=forms.SelectMultiple(attrs={"class": "choice-field"}),
+                                          queryset=MedlTag.objects.all(), required=False)
+
+    class Meta:
+        model = MedlPicture
+        fields = ['tags']

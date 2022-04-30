@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from django.contrib.auth.decorators import login_required
-from .forms import PictureForm, SearchForm, TagForm
+from .forms import PictureForm, SearchForm, TagForm, ChangeTags
 from .filter import *
 from django.db.models import Count
 # Create your views here.
@@ -15,10 +15,15 @@ def gallery(request):
 
 @login_required(login_url='login')
 def image(request, pi):
+    chnagetag = ChangeTags
     picture = MedlPicture.objects.get(id=pi)
-    context = {'image': picture}
-    print(picture.id)
-    print(picture.tags.all())
+    if request.method == "POST":
+        form = ChangeTags(request.POST)
+        if form.is_valid():
+            print(request.POST.getlist('tags'))
+            picture.tags.set(request.POST.getlist('tags'))
+            picture.save()
+    context = {'image': picture, 'changetag': chnagetag}
     return render(request, 'image.html', context)
 
 
@@ -54,7 +59,7 @@ def cabinet(request):
 
 
 @login_required(login_url='login')
-def search(request):
+def search(request, tag=''):
     form = SearchForm
     result = set(MedlPicture.objects.all())
     if request.method == "POST":
@@ -63,7 +68,7 @@ def search(request):
             name = form.cleaned_data.get("name")
             author = form.cleaned_data.get("author")
             tags = form.cleaned_data.get("tags")
-            print(name)
+            print(tags)
             if name and tags and author:
                 result = set(MedlPicture.objects.filter(tags__in=tags, name=name, author=author).annotate(num_tags=Count('tags')).filter(num_tags=len(tags)))
             elif name and tags and not author:
@@ -76,6 +81,10 @@ def search(request):
                 result = set(MedlPicture.objects.filter(tags__in=tags).annotate(num_tags=Count('tags')).filter(num_tags=len(tags)))
             elif not name and not tags and author:
                 result = set(MedlPicture.objects.filter(author=author))
+    else:
+        if tag != '':
+            tag = MedlTag.objects.filter(tagname=tag)
+            result = set(MedlPicture.objects.filter(tags__in=tag).annotate(num_tags=Count('tags')).filter(num_tags=len(tag)))
     print(len(result))
     context = {'form': form, 'result': result, 'result_len': len(result)}
     return render(request, 'search.html', context)

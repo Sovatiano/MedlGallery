@@ -12,7 +12,7 @@
     <div class="img-tags">
         <p class="tag" style="font-weight: bold; padding-left:10px; font-family:Ubuntu; font-size:30px;">Теги:</p>
         {% for tag in image.tags.all %}
-        <p class="tag" style="color:white;font-size:25px;font-family:Ubuntu; text-align:left; padding-left:10px;"><a href="{% url 'search' %}">{{tag}}</a></p>
+        <p class="tag" style="color:white;font-size:25px;font-family:Ubuntu; text-align:left; padding-left:10px;"><a href="../search/{{tag}}">{{tag}}</a></p>
         {% endfor %}
     </div>
     <div class="date">
@@ -25,4 +25,11 @@
                 <p style="padding-left: 5px; color:white;font-size:30px;font-family:Ubuntu; text-align:left;"><span
                 style="font-weight: bold; padding-left:5px; padding-bottom: 10px">Описание: </span> {{image.description}}</p>
     </div>
+
+    <h1>Изменить теги:</h1>
+    <form action="" method="POST" style="margin-bottom:50px;">
+        {% csrf_token %}
+        {{ changetag }}
+        <button class="submit-button" type="submit" name="submit">Изменить</button>
+    </form>
 {% endblock %}
