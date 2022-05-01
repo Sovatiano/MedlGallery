@@ -82,11 +82,11 @@ body {
     overflow: hidden;
     outline: none;
     position: absolute;
-    left: 830px;
-    top: 8px;
-    width: 456px;
+    left: 38%;
+    top: 1%;
+    width: 24.2%;
     margin: auto;
-    height: 31px;
+    height: 8.8%;
     z-index: 2;
     display: block;
 }
