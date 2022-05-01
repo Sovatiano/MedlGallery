@@ -28,7 +28,6 @@ class PictureForm(ModelForm):
         self.fields['name'].label = ''
 
 
-
 class SearchForm(ModelForm):
     name = forms.CharField(label='', required=False,
                            widget=forms.TextInput(attrs={"class": "input-field", "placeholder": "Название фото"}))
@@ -36,7 +35,8 @@ class SearchForm(ModelForm):
     tags = forms.ModelMultipleChoiceField(label='', widget=forms.SelectMultiple(attrs={"class": "choice-field"}),
                                           queryset=MedlTag.objects.all().order_by('tagname'), required=False)
     author = forms.CharField(label='', required=False,
-                           widget=forms.TextInput(attrs={"class": "input-field", "placeholder": "Автор"}))
+                             widget=forms.TextInput(attrs={"class": "input-field", "placeholder": "Автор"}))
+
     class Meta:
         model = MedlPicture
         fields = ['name', 'tags', 'author']
