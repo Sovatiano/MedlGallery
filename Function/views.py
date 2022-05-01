@@ -59,11 +59,9 @@ def cabinet(request):
 
 
 @login_required(login_url='login')
-def search(request, tag=''):
+def search(request, filter=''):
     form = SearchForm
     с = 0
-    for elem in MedlPicture.objects.all():
-        print(elem.tags)
     result = MedlPicture.objects.all().order_by('-date_created')
     if request.method == "POST":
         form = SearchForm(request.POST)
@@ -90,9 +88,12 @@ def search(request, tag=''):
             elif not name and not tags and author:
                 result = set(MedlPicture.objects.filter(author=author).order_by('-date_created'))
     else:
-        if tag != '':
-            tag = MedlTag.objects.filter(tagname=tag)
+        if filter != '':
+            tag = MedlTag.objects.filter(tagname=filter)
+            print(tag)
             result = MedlPicture.objects.filter(tags__in=tag).annotate(num_tags=Count('tags')).filter(
                 num_tags=len(tag)).order_by('-date_created')
+            if len(result) == 0:
+                result = set(MedlPicture.objects.filter(author=filter).order_by('-date_created'))
     context = {'form': form, 'result': result, 'result_len': len(result)}
     return render(request, 'search.html', context)

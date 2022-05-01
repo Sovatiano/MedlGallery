@@ -1,0 +1,7 @@
+#searchdiv {
+  display: inline;
+}
+
+.search-button {
+  flex: left;
+}
