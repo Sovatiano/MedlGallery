@@ -21,7 +21,7 @@ def image(request, pi):
     picture = MedlPicture.objects.get(id=pi)
     if request.method == "POST":
         form = ChangeTags(request.POST)
-        if form.is_valid():
+        if form.is_valid() and 'tags' in request.POST:
             if "submit" in request.POST:
                 picture.tags.set(request.POST.getlist('tags'))
                 picture.save()
