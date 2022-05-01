@@ -61,7 +61,6 @@ def cabinet(request):
 @login_required(login_url='login')
 def search(request, filter=''):
     form = SearchForm
-    с = 0
     result = MedlPicture.objects.all().order_by('-date_created')
     if request.method == "POST":
         form = SearchForm(request.POST)
@@ -73,20 +72,18 @@ def search(request, filter=''):
                 result = MedlPicture.objects.filter(tags__in=tags, name=name, author=author).annotate(
                     num_tags=Count('tags')).filter(num_tags=len(tags)).order_by('-date_created')
             elif name and tags and not author:
-                result = set(
-                    MedlPicture.objects.filter(tags__in=tags, name=name).annotate(num_tags=Count('tags')).filter(
-                        num_tags=len(tags)).order_by('-date_created'))
+                result = MedlPicture.objects.filter(tags__in=tags, name=name).annotate(num_tags=Count('tags')).filter(
+                        num_tags=len(tags)).order_by('-date_created')
             elif name and not tags and not author:
-                result = set(MedlPicture.objects.filter(name=name))
+                result = MedlPicture.objects.filter(name=name)
             elif not name and tags and author:
-                result = set(
-                    MedlPicture.objects.filter(tags__in=tags, author=author).annotate(num_tags=Count('tags')).filter(
-                        num_tags=len(tags)).order_by('-date_created'))
+                result = MedlPicture.objects.filter(tags__in=tags, author=author).annotate(num_tags=Count('tags')).filter(
+                        num_tags=len(tags)).order_by('-date_created')
             elif not name and tags and not author:
                 result = MedlPicture.objects.filter(tags__in=tags).annotate(num_tags=Count('tags')).filter(
                     num_tags=len(tags)).order_by('-date_created')
             elif not name and not tags and author:
-                result = set(MedlPicture.objects.filter(author=author).order_by('-date_created'))
+                result = MedlPicture.objects.filter(author=author).order_by('-date_created')
     else:
         if filter != '':
             tag = MedlTag.objects.filter(tagname=filter)
