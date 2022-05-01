@@ -24,3 +24,21 @@
 }
 
 
+.author a {
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-decoration: none;
+  font-family: Ubuntu;
+  font-size: 1.15em;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  transition: .25s ease-in-out;
+}
+
+.author a:hover {
+  color: 43EE3E;
+}
+
+
+
