@@ -7,7 +7,9 @@
     <form action="" method="POST">
         {% csrf_token %}
         {{form}}
-        <button class="submit-button" type="submit">Поиск</button>
+        <button class="submit-button" name="submit" type="submit">Поиск</button>
+        <button class="submit-button" name="add" type="submit">Добавить</button>
+        <button class="submit-button" name="remove">Исключить</button>
          <p class="search_len" style="font-weight: bold; padding-left:5px; font-family:Ubuntu; font-size:30px;">Результатов: {{result_len}}</p>
     </form>
 </div>
