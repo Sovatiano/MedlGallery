@@ -11,7 +11,7 @@ class PictureForm(ModelForm):
                               attrs={"class": "input-field", "placeholder": "URL"}))
     description = forms.CharField(label='',
                                   widget=forms.TextInput(
-                                      attrs={"class": "input-field", "placeholder": "Описание фото"}))
+                                      attrs={"class": "input-field", "placeholder": "Описание фото"}), required=False)
 
     tags = forms.ModelMultipleChoiceField(label='', widget=forms.SelectMultiple(attrs={"class": "choice-field"}),
                                           queryset=MedlTag.objects.all().order_by('tagname'), required=False)

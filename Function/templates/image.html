@@ -22,8 +22,13 @@
         <p class="author_name" style="font-weight: bold; padding-left:10px; font-family:Ubuntu; font-size:30px;">Автор: <a style="text-decoration: none; color:white" href="../search/{{image.author}}">{{image.author}}</a></p>
     </div>
     <div class="description">
+        {% if image.description %}
                 <p style="padding-left: 5px; color:white;font-size:30px;font-family:Ubuntu; text-align:left;"><span
                 style="font-weight: bold; padding-left:5px; padding-bottom: 10px">Описание: </span> {{image.description}}</p>
+        {% else %}
+                <p style="padding-left: 5px; color:white;font-size:30px;font-family:Ubuntu; text-align:left;"><span
+                style="font-weight: bold; padding-left:5px; padding-bottom: 10px">Описание: </span> Отсутствует</p>
+        {% endif %}
     </div>
 
     <h1 style= "padding-left:10px">Изменить теги:</h1>
