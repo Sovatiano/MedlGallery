@@ -29,7 +29,8 @@ def image(request, pi):
                 for tag in request.POST.getlist('tags'):
                     picture.tags.add(tag)
             elif "remove" in request.POST:
-                picture.tags.remove(request.POST['tags'])
+                for tag in request.POST.getlist('tags'):
+                    picture.tags.remove(tag)
     context = {'image': picture, 'changetag': chnagetag}
     return render(request, 'image.html', context)
 
