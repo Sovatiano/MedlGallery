@@ -1,1 +1,0 @@
-web: gunicorn FirstTry.wsgi --log-file -
